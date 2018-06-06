@@ -1,0 +1,643 @@
+{
+	"info": {
+		"_postman_id": "70ffc037-6744-492b-aa79-fd19f2d29601",
+		"name": "Veeam Availability Orchestrator RESTAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "v1",
+			"description": "Folder for v1",
+			"item": [
+				{
+					"name": "Prod",
+					"description": "",
+					"item": [
+						{
+							"name": "Get server information",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/json, text/html, application/xml, text/xml"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "{{ApiServer}}/v1/About",
+									"host": [
+										"{{ApiServer}}"
+									],
+									"path": [
+										"v1",
+										"About"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Returns access and refresh tokens",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "75e3e9d2-ad47-4eee-ae12-e31cd7bcf203",
+										"type": "text/javascript",
+										"exec": [
+											"var body = JSON.parse(responseBody)",
+											"pm.environment.set(\"refresh_token\", body.refresh_token);",
+											"pm.environment.set(\"access_token\", body.access_token);",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "text"
+										},
+										{
+											"key": "refresh_token",
+											"value": "{{refresh_token}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{ApiServer}}/v1/Accounts/Token",
+									"host": [
+										"{{ApiServer}}"
+									],
+									"path": [
+										"v1",
+										"Accounts",
+										"Token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout current user by access token",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/json, text/html, application/xml, text/xml"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "{{ApiServer}}/v1/Accounts/Logout",
+									"host": [
+										"{{ApiServer}}"
+									],
+									"path": [
+										"v1",
+										"Accounts",
+										"Logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all VAO sites",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/json, text/html, application/xml, text/xml"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "{{ApiServer}}/v1/Sites",
+									"host": [
+										"{{ApiServer}}"
+									],
+									"path": [
+										"v1",
+										"Sites"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get VAO site by ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/json, text/html, application/xml, text/xml"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "{{ApiServer}}/v1/Sites/{{SiteID}}",
+									"host": [
+										"{{ApiServer}}"
+									],
+									"path": [
+										"v1",
+										"Sites",
+										"{{SiteID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all failover plans by all VAO sites",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/json, text/html, application/xml, text/xml"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "{{ApiServer}}/v1/FailoverPlans",
+									"host": [
+										"{{ApiServer}}"
+									],
+									"path": [
+										"v1",
+										"FailoverPlans"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all failover plans by site ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/json, text/html, application/xml, text/xml"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "{{ApiServer}}/v1/Sites/{{SiteID}}/FailoverPlans",
+									"host": [
+										"{{ApiServer}}"
+									],
+									"path": [
+										"v1",
+										"Sites",
+										"{{SiteID}}",
+										"FailoverPlans"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get failover plan by ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/json, text/html, application/xml, text/xml"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "{{ApiServer}}/v1/FailoverPlans/{{PlanID}}",
+									"host": [
+										"{{ApiServer}}"
+									],
+									"path": [
+										"v1",
+										"FailoverPlans",
+										"{{PlanID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Enable failover plan",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/json, text/html, application/xml, text/xml"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "{{ApiServer}}/v1/FailoverPlans/{{PlanID}}/Enable",
+									"host": [
+										"{{ApiServer}}"
+									],
+									"path": [
+										"v1",
+										"FailoverPlans",
+										"{{PlanID}}",
+										"Enable"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Disable failover plan",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/json, text/html, application/xml, text/xml"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "{{ApiServer}}/v1/FailoverPlans/{{PlanID}}/Disable",
+									"host": [
+										"{{ApiServer}}"
+									],
+									"path": [
+										"v1",
+										"FailoverPlans",
+										"{{PlanID}}",
+										"Disable"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{access_token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7e634570-366b-4ad1-81a8-06b54da75925",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e296b8d7-f789-4ea7-8614-d120d75652fd",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Dev",
+					"description": "",
+					"item": [
+						{
+							"name": "Run failover plan",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/json, text/html, application/xml, text/xml"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{ApiServer}}/v1/FailoverPlans/:id/Run",
+									"host": [
+										"{{ApiServer}}"
+									],
+									"path": [
+										"v1",
+										"FailoverPlans",
+										":id",
+										"Run"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Continue failover plan after halting",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/json, text/html, application/xml, text/xml"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{ApiServer}}/v1/FailoverPlans/:id/Run/Continue",
+									"host": [
+										"{{ApiServer}}"
+									],
+									"path": [
+										"v1",
+										"FailoverPlans",
+										":id",
+										"Run",
+										"Continue"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reset failover plan",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/json, text/html, application/xml, text/xml"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{ApiServer}}/v1/FailoverPlans/:id/Reset",
+									"host": [
+										"{{ApiServer}}"
+									],
+									"path": [
+										"v1",
+										"FailoverPlans",
+										":id",
+										"Reset"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Halt failover plan",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/json, text/html, application/xml, text/xml"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{ApiServer}}/v1/FailoverPlans/:id/Halt",
+									"host": [
+										"{{ApiServer}}"
+									],
+									"path": [
+										"v1",
+										"FailoverPlans",
+										":id",
+										"Halt"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Undo failover plan",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/json, text/html, application/xml, text/xml"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "{{ApiServer}}/v1/FailoverPlans/:id/Undo",
+									"host": [
+										"{{ApiServer}}"
+									],
+									"path": [
+										"v1",
+										"FailoverPlans",
+										":id",
+										"Undo"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Schedule failover plan",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/json, text/html, application/xml, text/xml"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{ApiServer}}/v1/FailoverPlans/:id/Schedule",
+									"host": [
+										"{{ApiServer}}"
+									],
+									"path": [
+										"v1",
+										"FailoverPlans",
+										":id",
+										"Schedule"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Disable schedule failover plan",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/json, text/html, application/xml, text/xml"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "{{ApiServer}}/v1/FailoverPlans/:id/Schedule/Disable",
+									"host": [
+										"{{ApiServer}}"
+									],
+									"path": [
+										"v1",
+										"FailoverPlans",
+										":id",
+										"Schedule",
+										"Disable"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{access_token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6895af58-21f4-4274-ab58-e93e5df93724",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "2e029963-2138-499e-bb42-d3e1e4592d9f",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		}
+	]
+}
