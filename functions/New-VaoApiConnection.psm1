@@ -16,7 +16,7 @@ public class TrustAllCertsPolicy : ICertificatePolicy {
 Function New-VaoApiConnection {
     <#
     .DESCRIPTION
-        HConnecto to Veeam Availability Orchestrator API.
+        Connecto to Veeam Availability Orchestrator API.
 
     .NOTES
         File Name  : New-VaoApiConnectionl.psm1
@@ -26,11 +26,16 @@ Function New-VaoApiConnection {
 
     .LINK
         https://mycloudrevolution.com/
+    
+    .LINK
+        https://helpcenter.veeam.com/docs/vao/restapi/overview.html?ver=10
 
     .EXAMPLE
+        $YourCredentials = Get-Credential
+        New-VaoApiConnection -Server "vao01.lab.local" -Credential $YourCredentials
 
     .PARAMETER Server
-        FQDN of the VAO Instance
+        FQDN of the Veeam Availability Orchestrator  Instance
 
     #>
         Param (
@@ -45,6 +50,15 @@ Function New-VaoApiConnection {
                 [Management.Automation.PSCredential]$Credential
         )
         Process {
+            try {
+                $FullUri = "https://" + $Server + ":9899" +  "/v1/About"
+                $Headers =  @{'Accept' = 'application/json, text/json, text/html, application/xml, text/xml'}
+                $Return = Invoke-RestMethod -uri $FullUri -Method Get -Headers $Headers   
+            }
+            catch {
+                Throw "Failed to contact Veeam Availability Orchestrator API. Login aborted!"    
+            }
+
             $username = $Credential.UserName
             $password = $Credential.GetNetworkCredential().Password
 
