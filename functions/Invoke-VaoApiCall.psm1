@@ -22,22 +22,22 @@ Function Invoke-VaoApiCall {
         File Name  : Invoke-VaoApiCall.psm1
         Author     : Markus Kraus
         Version    : 1.0
-        State      : Test
+        State      : Ready
     .LINK
         https://mycloudrevolution.com/
-    
+
     .LINK
         https://helpcenter.veeam.com/docs/vao/restapi/overview.html?ver=10
 
     .EXAMPLE
-        Invoke-VaoApiCall -Uri "/v1/About" -Method Get 
+        Invoke-VaoApiCall -Uri "/v1/About" -Method Get
 
     .PARAMETER Server
         FQDN of the Veeam Availability Orchestrator Instance
-    
+
     .PARAMETER Token
         Bearer Token for the Veeam Availability Orchestrator Instance
-    
+
     .PARAMETER Uri
         API Uri for the Call
 
@@ -78,7 +78,7 @@ Function Invoke-VaoApiCall {
             if ($Method -like "Get" ) {
                 $FullUri = "https://" + $Server + ":9899" +  $Uri
                 $Headers =  @{'accept' = $Accept;'Authorization' = $FullToken}
-                $Return = Invoke-RestMethod -uri $FullUri -Method $Method -Headers $Headers    
+                $Return = Invoke-RestMethod -uri $FullUri -Method $Method -Headers $Headers
             }
             elseif ($Method -like "Post") {
                 if ($Body) {
@@ -89,9 +89,9 @@ Function Invoke-VaoApiCall {
                 else {
                     $FullUri = "https://" + $Server + ":9899" +  $Uri
                     $Headers =  @{'accept' = $Accept;'Authorization' = $FullToken}
-                    $Return = Invoke-RestMethod -uri $FullUri -Method $Method -Headers $Headers 
+                    $Return = Invoke-RestMethod -uri $FullUri -Method $Method -Headers $Headers
                 }
-                    
+
             }
             #edregion
 

@@ -7,7 +7,7 @@ Function Get-VaoFailoverPlan {
         File Name  : Get-VaoFailoverPlan.psm1
         Author     : Markus Kraus
         Version    : 1.0
-        State      : Test
+        State      : Ready
 
     .LINK
         https://mycloudrevolution.com/
@@ -29,10 +29,10 @@ Function Get-VaoFailoverPlan {
         )
         Process {
             if ($SiteID) {
-                $Return = Invoke-VaoApiCall -Uri "/v1/Sites/$SiteID/FailoverPlans" -Method Get 
+                $Return = Invoke-VaoApiCall -Uri "/v1/Sites/$SiteID/FailoverPlans" -Method Get
             }
             else {
-                $Return = Invoke-VaoApiCall -Uri "/v1/FailoverPlans" -Method Get 
+                $Return = Invoke-VaoApiCall -Uri "/v1/FailoverPlans" -Method Get
             }
 
             $Return

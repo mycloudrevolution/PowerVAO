@@ -7,7 +7,7 @@ Function Get-VaoSite {
         File Name  : Get-VaoSite.psm1
         Author     : Markus Kraus
         Version    : 1.0
-        State      : Test
+        State      : Ready
 
     .LINK
         https://mycloudrevolution.com/
@@ -29,10 +29,10 @@ Function Get-VaoSite {
         )
         Process {
             if ($SiteID) {
-                $Return = Invoke-VaoApiCall -Uri "/v1/Sites/$SiteID" -Method Get 
+                $Return = Invoke-VaoApiCall -Uri "/v1/Sites/$SiteID" -Method Get
             }
             else {
-                $Return = Invoke-VaoApiCall -Uri "/v1/Sites" -Method Get 
+                $Return = Invoke-VaoApiCall -Uri "/v1/Sites" -Method Get
             }
 
             $Return

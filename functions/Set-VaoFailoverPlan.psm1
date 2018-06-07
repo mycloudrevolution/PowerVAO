@@ -7,7 +7,7 @@ Function Set-VaoFailoverPlan {
         File Name  : Set-VaoFailoverPlan.psm1
         Author     : Markus Kraus
         Version    : 1.0
-        State      : Test
+        State      : Ready
 
     .LINK
         https://mycloudrevolution.com/
@@ -20,10 +20,10 @@ Function Set-VaoFailoverPlan {
 
     .PARAMETER PlanID
         Failover Plan ID
-    
+
     .PARAMETER Enable
         Enable Failover Plan
-    
+
     .PARAMETER Disable
         Disable Failover Plan
     #>
@@ -40,10 +40,10 @@ Function Set-VaoFailoverPlan {
         )
         Process {
             if ($Enable) {
-                $Return = Invoke-VaoApiCall -Uri "/v1/FailoverPlans/$PlanID/Enable" -Method Post 
+                $Return = Invoke-VaoApiCall -Uri "/v1/FailoverPlans/$PlanID/Enable" -Method Post
             }
             elseif ($Disable) {
-                $Return = Invoke-VaoApiCall -Uri "/v1/FailoverPlans/$PlanID/Disable" -Method Post 
+                $Return = Invoke-VaoApiCall -Uri "/v1/FailoverPlans/$PlanID/Disable" -Method Post
             }
 
             $Return

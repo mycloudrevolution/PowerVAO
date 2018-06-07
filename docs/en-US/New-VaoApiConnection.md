@@ -23,8 +23,9 @@ Connecto to Veeam Availability Orchestrator API.
 ### EXAMPLE 1
 ```
 $YourCredentials = Get-Credential
-New-VaoApiConnection -Server "vao01.lab.local" -Credential $YourCredentials
 ```
+
+New-VaoApiConnection -Server "vao01.lab.local" -Credential $YourCredentials
 
 ## PARAMETERS
 
@@ -74,8 +75,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -85,7 +85,7 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 File Name  : New-VaoApiConnectionl.psm1
 Author     : Markus Kraus
 Version    : 1.0
-State      : Test
+State      : Ready
 
 ## RELATED LINKS
 

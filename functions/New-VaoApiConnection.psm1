@@ -22,11 +22,11 @@ Function New-VaoApiConnection {
         File Name  : New-VaoApiConnectionl.psm1
         Author     : Markus Kraus
         Version    : 1.0
-        State      : Test
+        State      : Ready
 
     .LINK
         https://mycloudrevolution.com/
-    
+
     .LINK
         https://helpcenter.veeam.com/docs/vao/restapi/overview.html?ver=10
 
@@ -59,10 +59,10 @@ Function New-VaoApiConnection {
             try {
                 $FullUri = "https://" + $Server + ":9899" +  "/v1/About"
                 $Headers =  @{'Accept' = 'application/json, text/json, text/html, application/xml, text/xml'}
-                $Return = Invoke-RestMethod -uri $FullUri -Method Get -Headers $Headers   
+                $Return = Invoke-RestMethod -uri $FullUri -Method Get -Headers $Headers
             }
             catch {
-                Throw "Failed to contact Veeam Availability Orchestrator API. Login aborted!"    
+                Throw "Failed to contact Veeam Availability Orchestrator API. Login aborted!"
             }
 
             $username = $Credential.UserName
@@ -74,8 +74,8 @@ Function New-VaoApiConnection {
                             username = $username;
                             password = $password;
                             refresh_token = $Token
-                    } 
-            $Return = Invoke-RestMethod -uri $FullUri -Method POST -Headers $Headers -Body $Body       
+                    }
+            $Return = Invoke-RestMethod -uri $FullUri -Method POST -Headers $Headers -Body $Body
 
             #region: Cleanup Confidential Data
             Clear-Variable -Name username, password
