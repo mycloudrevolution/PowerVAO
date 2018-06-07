@@ -1,7 +1,7 @@
 Function Get-VaoSite {
     <#
     .DESCRIPTION
-        Get All VAO Sites
+        Get Veeam Availability Orchestrator Sites
 
     .NOTES
         File Name  : Get-VaoSite.psm1
@@ -13,14 +13,17 @@ Function Get-VaoSite {
         https://mycloudrevolution.com/
 
     .EXAMPLE
+        Get-VaoSite | Select-Object name, id, serverName, type | ft -AutoSize
 
+    .EXAMPLE
+        Get-VaoSite -SiteID 850316df-d73f-4e8b-b8bc-7b1815fb0a9e | Select-Object name, id, serverName, type | ft -AutoSize
 
     .PARAMETER SiteID
-        Optional VAO Site ID
+        Optional Veeam Availability Orchestrator Site ID
 
     #>
         Param (
-            [Parameter(Mandatory=$False, ValueFromPipeline=$False, HelpMessage="Optional VAO Site ID")]
+            [Parameter(Mandatory=$False, ValueFromPipeline=$False, HelpMessage="Optional Veeam Availability Orchestrator Site ID")]
             [ValidateNotNullorEmpty()]
                 [String]$SiteID
         )

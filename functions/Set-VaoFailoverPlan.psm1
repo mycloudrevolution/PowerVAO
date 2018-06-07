@@ -1,7 +1,7 @@
 Function Set-VaoFailoverPlan {
     <#
     .DESCRIPTION
-        Modify VAO FailoverPlan
+        Modify Veeam Availability Orchestrator FailoverPlan
 
     .NOTES
         File Name  : Set-VaoFailoverPlan.psm1
@@ -13,10 +13,19 @@ Function Set-VaoFailoverPlan {
         https://mycloudrevolution.com/
 
     .EXAMPLE
+        Set-VaoFailoverPlan -PlanID ed799d88-30f0-4494-b183-124e171afa91 -Enable
+
+    .EXAMPLE
+        Set-VaoFailoverPlan -PlanID ed799d88-30f0-4494-b183-124e171afa91 -Disable
 
     .PARAMETER PlanID
         Failover Plan ID
-
+    
+    .PARAMETER Enable
+        Enable Failover Plan
+    
+    .PARAMETER Disable
+        Disable Failover Plan
     #>
         Param (
             [Parameter(Mandatory=$True, ValueFromPipeline=$False, HelpMessage="Failover Plan ID")]

@@ -35,17 +35,23 @@ Function New-VaoApiConnection {
         New-VaoApiConnection -Server "vao01.lab.local" -Credential $YourCredentials
 
     .PARAMETER Server
-        FQDN of the Veeam Availability Orchestrator  Instance
+        FQDN of the Veeam Availability Orchestrator Instance
+
+    .PARAMETER Token
+        Existing Token for renewal (not yet implemented)
+
+    .PARAMETER Credential
+        Credential for the Veeam Availability Orchestrator Instance
 
     #>
         Param (
-            [Parameter(Mandatory=$True, ValueFromPipeline=$False, HelpMessage="FQDN")]
+            [Parameter(Mandatory=$True, ValueFromPipeline=$False, HelpMessage="FQDN of the Veeam Availability Orchestrator Instance")]
             [ValidateNotNullorEmpty()]
                 [String]$Server,
-            [Parameter(Mandatory=$False, ValueFromPipeline=$False, HelpMessage="API Token String")]
+            [Parameter(Mandatory=$False, ValueFromPipeline=$False, HelpMessage="Existing Token for renewal (not yet implemented)")]
             [ValidateNotNullorEmpty()]
                 [String]$Token = $Global:VaoApiConnection.Token,
-            [Parameter(Mandatory=$True, ValueFromPipeline=$False, HelpMessage="Credential")]
+            [Parameter(Mandatory=$True, ValueFromPipeline=$False, HelpMessage="Credential for the Veeam Availability Orchestrator Instance")]
             [ValidateNotNullorEmpty()]
                 [Management.Automation.PSCredential]$Credential
         )

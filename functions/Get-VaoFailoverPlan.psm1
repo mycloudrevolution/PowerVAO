@@ -1,7 +1,7 @@
 Function Get-VaoFailoverPlan {
     <#
     .DESCRIPTION
-        Get All VAO FailoverPlans
+        Get Veeam Availability Orchestrator Failover Plans
 
     .NOTES
         File Name  : Get-VaoFailoverPlan.psm1
@@ -13,13 +13,17 @@ Function Get-VaoFailoverPlan {
         https://mycloudrevolution.com/
 
     .EXAMPLE
+        Get-VaoFailoverPlan | Select-Object name, id, planState, planStateDetails, scheduleEnabled, siteId | ft -AutoSize
+
+    .EXAMPLE
+        Get-VaoFailoverPlan -SiteID 850316df-d73f-4e8b-b8bc-7b1815fb0a9e | Select-Object name, id, planState, planStateDetails, scheduleEnabled, siteId | ft -AutoSize
 
     .PARAMETER SiteID
-        Optional VAO Site ID
+        Optional Veeam Availability Orchestrator Site ID
 
     #>
         Param (
-            [Parameter(Mandatory=$False, ValueFromPipeline=$False, HelpMessage="Optional VAO Site ID")]
+            [Parameter(Mandatory=$False, ValueFromPipeline=$False, HelpMessage="Optional Veeam Availability Orchestrator Site ID")]
             [ValidateNotNullorEmpty()]
                 [String]$SiteID
         )

@@ -16,32 +16,49 @@ public class TrustAllCertsPolicy : ICertificatePolicy {
 Function Invoke-VaoApiCall {
     <#
     .DESCRIPTION
-        Helper Function to call the Veeam Availability Orchestrator API.
+        Helper function to call the Veeam Availability Orchestrator API.
 
     .NOTES
         File Name  : Invoke-VaoApiCall.psm1
         Author     : Markus Kraus
         Version    : 1.0
         State      : Test
-
     .LINK
         https://mycloudrevolution.com/
+    
+    .LINK
+        https://helpcenter.veeam.com/docs/vao/restapi/overview.html?ver=10
 
     .EXAMPLE
-
+        Invoke-VaoApiCall -Uri "/v1/About" -Method Get 
 
     .PARAMETER Server
-        FQDN of the VAO Instance
+        FQDN of the Veeam Availability Orchestrator Instance
+    
+    .PARAMETER Token
+        Bearer Token for the Veeam Availability Orchestrator Instance
+    
+    .PARAMETER Uri
+        API Uri for the Call
+
+    .PARAMETER Accept
+        Accept Header for the API Call
+
+    .PARAMETER Methode
+        Methode of the API Call
+
+    .PARAMETER Body
+        Body of the API Call
 
     #>
         Param (
-            [Parameter(Mandatory=$False, ValueFromPipeline=$False, HelpMessage="FQDN")]
+            [Parameter(Mandatory=$False, ValueFromPipeline=$False, HelpMessage="FQDN of the Veeam Availability Orchestrator Instance")]
             [ValidateNotNullorEmpty()]
                 [String]$Server = $Global:VaoApiConnection.Server,
-            [Parameter(Mandatory=$False, ValueFromPipeline=$False, HelpMessage="API Token String")]
+            [Parameter(Mandatory=$False, ValueFromPipeline=$False, HelpMessage="Bearer Token for the Veeam Availability Orchestrator Instance")]
             [ValidateNotNullorEmpty()]
                 [String]$Token = $Global:VaoApiConnection.access_token,
-            [Parameter(Mandatory=$True, ValueFromPipeline=$False, HelpMessage="API Uri")]
+            [Parameter(Mandatory=$True, ValueFromPipeline=$False, HelpMessage="API Uri for the Call")]
             [ValidateNotNullorEmpty()]
                 [String]$Uri,
             [Parameter(Mandatory=$False, ValueFromPipeline=$False, HelpMessage="Accept Header for the API Call")]
