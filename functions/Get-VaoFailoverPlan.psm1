@@ -1,10 +1,10 @@
-Function Get-VaoFailoverPlans {
+Function Get-VaoFailoverPlan {
     <#
     .DESCRIPTION
         Get All VAO FailoverPlans
 
     .NOTES
-        File Name  : Get-VaoFailoverPlans.psm1
+        File Name  : Get-VaoFailoverPlan.psm1
         Author     : Markus Kraus
         Version    : 1.0
         State      : Test
@@ -14,12 +14,12 @@ Function Get-VaoFailoverPlans {
 
     .EXAMPLE
 
-    .PARAMETER Server
-        FQDN of the VAO Instance
+    .PARAMETER SiteID
+        Optional VAO Site ID
 
     #>
         Param (
-            [Parameter(Mandatory=$False, ValueFromPipeline=$False, HelpMessage="Optional Site ID")]
+            [Parameter(Mandatory=$False, ValueFromPipeline=$False, HelpMessage="Optional VAO Site ID")]
             [ValidateNotNullorEmpty()]
                 [String]$SiteID
         )

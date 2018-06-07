@@ -1,10 +1,10 @@
-Function Get-VaoSites {
+Function Get-VaoSite {
     <#
     .DESCRIPTION
         Get All VAO Sites
 
     .NOTES
-        File Name  : Get-VaoSites.psm1
+        File Name  : Get-VaoSite.psm1
         Author     : Markus Kraus
         Version    : 1.0
         State      : Test
@@ -15,12 +15,12 @@ Function Get-VaoSites {
     .EXAMPLE
 
 
-    .PARAMETER Server
-        FQDN of the VAO Instance
+    .PARAMETER SiteID
+        Optional VAO Site ID
 
     #>
         Param (
-            [Parameter(Mandatory=$False, ValueFromPipeline=$False, HelpMessage="Optional Site ID")]
+            [Parameter(Mandatory=$False, ValueFromPipeline=$False, HelpMessage="Optional VAO Site ID")]
             [ValidateNotNullorEmpty()]
                 [String]$SiteID
         )
