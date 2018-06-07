@@ -56,7 +56,7 @@ Function Invoke-VaoApiCall {
                 $Body
         )
         Process {
-            $FullToken= "Bearer " + $Token
+            $FullToken = "Bearer " + $Token
             #region: RESTful API Call
             if ($Method -like "Get" ) {
                 $FullUri = "https://" + $Server + ":9899" +  $Uri
@@ -64,9 +64,17 @@ Function Invoke-VaoApiCall {
                 $Return = Invoke-RestMethod -uri $FullUri -Method $Method -Headers $Headers    
             }
             elseif ($Method -like "Post") {
-                $FullUri = "https://" + $Server + ":9899" +  $Uri
-                $Headers =  @{'accept' = $Accept;'Authorization' = $Token}
-                $Return = Invoke-RestMethod -uri $FullUri -Method $Method -Headers $Headers -Body $Body       
+                if ($Body) {
+                    $FullUri = "https://" + $Server + ":9899" +  $Uri
+                    $Headers =  @{'accept' = $Accept;'Authorization' = $FullToken}
+                    $Return = Invoke-RestMethod -uri $FullUri -Method $Method -Headers $Headers -Body $Body
+                }
+                else {
+                    $FullUri = "https://" + $Server + ":9899" +  $Uri
+                    $Headers =  @{'accept' = $Accept;'Authorization' = $FullToken}
+                    $Return = Invoke-RestMethod -uri $FullUri -Method $Method -Headers $Headers 
+                }
+                    
             }
             #edregion
 
